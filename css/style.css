@@ -20,6 +20,14 @@ body {
     width: 17vw;
     margin: 1em 2em;
 }
+.button {
+    background-color: purple;
+    color: white;
+    border: 0;
+    height: 2em;
+    border-radius: .5em;
+    margin: .1em;
+}
 .input {
     height: 2em;
     margin: .5em;
