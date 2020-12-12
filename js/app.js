@@ -14,7 +14,7 @@ var app = {
     app.gridSizeInput = app.createInput('Taille de la grille');
     app.pixelSizeInput = app.createInput('Taille des pixels');
     // we create buttons who will make the app more interactive
-    app.createButtons(['valider']);
+    app.createButtons(['valider', 'réinitialiser']);
 
     //on the click, we update the board
     var submitButtons = document.querySelectorAll('.button');
@@ -64,6 +64,8 @@ var app = {
       // first, we remove the board before create a new one
       app.boardElement.innerHTML = '';
       app.createGrid(app.gridSizeInput.value, app.pixelSizeInput.value);
+    } else if (action === 'réinitialiser') {
+      app.resetColorGrid();
     };
   },
 
@@ -114,6 +116,14 @@ var app = {
   handleCellClick(event) {
     var clickedCell = event.target;
     clickedCell.classList.toggle('cellule--black');
+  },
+
+  /**
+   * to reset the color by remove the concern css class
+   */
+  resetColorGrid() {
+    var gridElement = document.querySelectorAll('.cellule--black');
+    gridElement.forEach(element => element.classList.remove('cellule--black'));
   }
 
 };
