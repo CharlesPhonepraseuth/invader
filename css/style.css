@@ -33,6 +33,12 @@ body {
     margin: .5em;
 }
 
+.errorMessage {
+    color: darkred;
+    margin: .5em 0;
+    text-align: center;
+}
+
 /* ######
 * BOARD
 ########*/

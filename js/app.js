@@ -57,13 +57,23 @@ var app = {
    */
   handleFormSubmit(event) { 
     event.preventDefault();
+    // before to treat something, we delete all error message if an old one occured
+    var errorMessage = document.querySelectorAll('.errorMessage');
+    errorMessage.forEach(element => app.formElement.removeChild(element));
+
     var action = event.target.textContent;
     
     // we adapt the board with gridSize and pixelSize properties
     if (action === 'valider') {
-      // first, we remove the board before create a new one
-      app.boardElement.innerHTML = '';
-      app.createGrid(app.gridSizeInput.value, app.pixelSizeInput.value);
+      // we check each input if an error occured
+      var error = app.checkError([parseInt(app.gridSizeInput.value, 10), parseInt(app.pixelSizeInput.value,10)]);
+      if (error.length > 0) {
+        app.sendErrorMessage(error);
+      } else {
+        // first, we remove the board before create a new one
+        app.boardElement.innerHTML = '';
+        app.createGrid(app.gridSizeInput.value, app.pixelSizeInput.value);
+      }
     } else if (action === 'réinitialiser') {
       app.resetColorGrid();
     };
@@ -124,6 +134,41 @@ var app = {
   resetColorGrid() {
     var gridElement = document.querySelectorAll('.cellule--black');
     gridElement.forEach(element => element.classList.remove('cellule--black'));
+  },
+
+  /**
+   * to check if an error occured
+   * @param {array} array contain input values 
+   */
+  checkError(array) {
+    var errorList = [];
+
+    for (let input of array) {
+      if (isNaN(input)) {
+        errorList.push('La valeur ne peut pas être vide');
+      } else if (input <= 0) {
+        errorList.push('La valeur doit être positive');
+      } else if (input > 40) {
+        errorList.push('La valeur doit être inférieur à 40')
+      };
+    };
+
+    // we filter the array to remove duplicates
+    var list = errorList.filter((value, index, self) => self.indexOf(value) === index)
+    return list;
+  },
+
+  /**
+   * 
+   * @param {array} message contain error message
+   */
+  sendErrorMessage(message) {
+    message.forEach(text => {
+      var pElement = document.createElement('p');
+      pElement.textContent = text;
+      pElement.className = 'errorMessage';
+      app.formElement.prepend(pElement);
+    });
   }
 
 };
