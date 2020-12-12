@@ -6,3 +6,21 @@ body {
     display: flex;
     height: 97vh;
 }
+
+/* #####
+* FORM
+#######*/
+.formName {
+    text-transform: uppercase;
+    margin: auto;
+}
+.configuration {
+    display: flex;
+    flex-direction: column;
+    width: 17vw;
+    margin: 1em 2em;
+}
+.input {
+    height: 2em;
+    margin: .5em;
+}
