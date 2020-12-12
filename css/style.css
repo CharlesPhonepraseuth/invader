@@ -1,0 +1,8 @@
+/* #############
+* GLOBAL STYLE
+###############*/
+body {
+    background-color: lightblue;
+    display: flex;
+    height: 97vh;
+}
