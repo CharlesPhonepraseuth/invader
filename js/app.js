@@ -19,6 +19,9 @@ var app = {
     //on the click, we update the board
     var submitButtons = document.querySelectorAll('.button');
     submitButtons.forEach(element => element.addEventListener('click', app.handleFormSubmit));
+
+    // when start for the first time, we create a grid to render something to the user
+    app.createGrid(13, 40);
   },
 
   /**
