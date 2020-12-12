@@ -7,6 +7,8 @@ var app = {
     // we declare a property who will help us to manipulate the DOM
     app.formElement = document.querySelector('.configuration');
     app.boardElement = document.querySelector('.board');
+    // on the click, we change the color
+    app.boardElement.addEventListener('click', app.handleCellClick);
 
     // we declare property wo will help us to update the board
     app.gridSizeInput = app.createInput('Taille de la grille');
@@ -103,6 +105,15 @@ var app = {
     cellElement.style.width = pixelSize + 'px';
     cellElement.style.height = pixelSize + 'px';
     parentRowElement.appendChild(cellElement);
+  },
+
+  /**
+   * to toggle classname who will colorize the cell by css
+   * @param {event} event event received from addEventListener
+   */
+  handleCellClick(event) {
+    var clickedCell = event.target;
+    clickedCell.classList.toggle('cellule--black');
   }
 
 };
