@@ -32,3 +32,19 @@ body {
     height: 2em;
     margin: .5em;
 }
+
+/* ######
+* BOARD
+########*/
+.board {
+    margin: auto;
+}
+.ligne {
+    display: flex;
+}
+.cellule {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 2px solid lightseagreen;
+}
